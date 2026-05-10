@@ -1,0 +1,255 @@
+body {
+    background: #000;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+#raylib-window {
+    width: 1000px;
+    height: 750px;
+    background: rgb(25, 25, 25);
+    position: relative;
+    user-select: none;
+    overflow: hidden;
+}
+
+/* Header */
+#header-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    height: 90px;
+    background: rgb(40, 40, 40);
+    border-bottom: 1px solid darkgray;
+    box-sizing: border-box;
+}
+
+#target-plant-box {
+    position: absolute;
+    left: 300px; /* 500 - 200 */
+    top: 15px;
+    width: 60px;
+    height: 60px;
+    background: rgb(60, 60, 60);
+    border: 2px solid gold;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+#target-plant-box canvas {
+    position: absolute;
+    left: 4px; /* (60-48)/2 */
+    top: 4px;
+    width: 48px;
+    height: 48px;
+}
+
+#parent-a-box {
+    position: absolute;
+    left: 380px; /* 500 - 120 */
+    top: 20px;
+    width: 50px;
+    height: 50px;
+}
+#parent-a-box canvas {
+    width: 48px; height: 48px;
+    position: absolute; left: 1px; top: 1px;
+}
+
+#parent-b-box {
+    position: absolute;
+    left: 440px; /* 500 - 60 */
+    top: 20px;
+    width: 50px;
+    height: 50px;
+}
+#parent-b-box canvas {
+    width: 48px; height: 48px;
+    position: absolute; left: 1px; top: 1px;
+}
+
+#dropdown-box {
+    position: absolute;
+    left: 530px; /* 500 + 30 */
+    top: 25px;
+    width: 280px;
+    height: 40px;
+    background: rgb(50, 50, 50);
+    border: 2px solid lightgray;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #f5f5f5; /* RayWhite */
+    font-size: 20px;
+}
+#dropdown-label {
+    position: absolute;
+    left: 15px;
+    top: 8px;
+}
+#dropdown-arrow {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    color: lightgray;
+}
+
+#dropdown-list {
+    position: absolute;
+    left: 530px;
+    top: 65px;
+    width: 280px;
+    z-index: 100;
+}
+.dropdown-option {
+    width: 100%;
+    height: 40px;
+    background: rgb(40, 40, 40);
+    border: 1px solid gray;
+    box-sizing: border-box;
+    color: #f5f5f5;
+    font-size: 20px;
+    padding-left: 15px;
+    line-height: 40px;
+    cursor: pointer;
+}
+.dropdown-option:hover {
+    background: rgb(70, 70, 70);
+}
+
+/* Main UI */
+#score-text {
+    position: absolute;
+    top: 110px;
+    width: 1000px;
+    text-align: center;
+    color: gold;
+    font-size: 24px;
+}
+
+#grid-container {
+    position: absolute;
+}
+
+/* Controls */
+#width-label {
+    position: absolute;
+    left: 360px; /* 500 - 140 */
+    top: 640px; /* 750 - 110 */
+    color: #f5f5f5;
+    font-size: 20px;
+}
+#height-label {
+    position: absolute;
+    left: 560px; /* 500 + 60 */
+    top: 640px;
+    color: #f5f5f5;
+    font-size: 20px;
+}
+
+.raylib-btn {
+    position: absolute;
+    background: rgb(60, 60, 60);
+    border: 2px solid lightgray;
+    color: #f5f5f5;
+    font-size: 24px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#btn-w-minus { left: 350px; top: 670px; width: 40px; height: 40px; }
+#btn-w-plus  { left: 450px; top: 670px; width: 40px; height: 40px; }
+#btn-h-minus { left: 550px; top: 670px; width: 40px; height: 40px; }
+#btn-h-plus  { left: 650px; top: 670px; width: 40px; height: 40px; }
+
+#grid-container {
+    position: absolute;
+    background: url('https://orteil.dashnet.org/cookieclicker/img/BGgarden.jpg');
+    box-shadow: 0 0 20px rgba(0,0,0,0.8) inset, 0 0 0 4px #362211;
+    border-radius: 4px;
+}
+
+/* Grid tiles */
+.tile {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.tile.soil {
+    background: url('https://orteil.dashnet.org/cookieclicker/img/gardenPlots.png');
+    background-size: 220px 55px; /* 4 frames of 55px width */
+    image-rendering: pixelated;
+}
+
+/* Add random variations to the soil using nth-child */
+.tile.soil:nth-child(4n+1) { background-position: -55px 0px; }
+.tile.soil:nth-child(4n+2) { background-position: -110px 0px; }
+.tile.soil:nth-child(4n+3) { background-position: -165px 0px; }
+
+.tile.empty {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+.tile canvas {
+    position: absolute;
+    left: 1px; /* (55-48)/2 approx */
+    top: 1px;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+}
+
+/* Plant Selection */
+#selection-title {
+    position: absolute;
+    top: 50px;
+    width: 1000px;
+    text-align: center;
+    color: #f5f5f5;
+    font-size: 30px;
+}
+
+#plant-grid {
+    position: absolute;
+    left: 320px; /* 500 - (6*60)/2 */
+    top: 150px;
+}
+.plant-cell {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgb(40, 40, 40);
+    border: 2px solid darkgray;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.plant-cell canvas {
+    position: absolute; left: -1px; top: -1px; width: 48px; height: 48px;
+    pointer-events: none;
+}
+
+#btn-back {
+    left: 450px; /* 500 - 50 */
+    top: 600px;
+    width: 100px;
+    height: 40px;
+}
+
+/* Tooltip */
+#tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.78); /* ~200 alpha */
+    color: #f5f5f5;
+    font-size: 20px;
+    padding: 5px 10px;
+    pointer-events: none;
+    z-index: 1000;
+}

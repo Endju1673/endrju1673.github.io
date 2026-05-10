@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1000, initial-scale=1.0">
+    <title>CC Garden Optimal Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="raylib-window">
+        <!-- Main Editor State -->
+        <div id="state-main">
+            <!-- Header -->
+            <div id="header-panel">
+                <div id="target-plant-box">
+                    <canvas id="target-plant-canvas" width="48" height="48"></canvas>
+                </div>
+                
+                <div id="parent-a-box">
+                    <canvas id="parent-a-canvas" width="48" height="48"></canvas>
+                </div>
+                <div id="parent-b-box" style="display:none;">
+                    <canvas id="parent-b-canvas" width="48" height="48"></canvas>
+                </div>
+
+                <div id="dropdown-box">
+                    <div id="dropdown-label"></div>
+                    <div id="dropdown-arrow">▼</div>
+                </div>
+            </div>
+            
+            <div id="score-text">Optimal Yield: 0 tiles</div>
+
+            <div id="grid-container"></div>
+
+            <div id="width-label">Width: 6</div>
+            <button id="btn-w-minus" class="raylib-btn">-</button>
+            <button id="btn-w-plus" class="raylib-btn">+</button>
+
+            <div id="height-label">Height: 6</div>
+            <button id="btn-h-minus" class="raylib-btn">-</button>
+            <button id="btn-h-plus" class="raylib-btn">+</button>
+
+            <!-- Dropdown Options (Overlays everything) -->
+            <div id="dropdown-list" style="display:none;"></div>
+        </div>
+
+        <!-- Plant Selection State -->
+        <div id="state-selection" style="display:none;">
+            <div id="selection-title">Select Target Plant</div>
+            <div id="plant-grid"></div>
+            <button id="btn-back" class="raylib-btn">Back</button>
+        </div>
+        
+        <!-- Tooltip -->
+        <div id="tooltip" style="display:none;"></div>
+    </div>
+    
+    <img id="spritesheet" src="gardenPlants.png" style="display: none;">
+
+    <script src="layouts.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
